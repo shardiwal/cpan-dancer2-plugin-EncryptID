@@ -17,7 +17,7 @@ Version 0.01
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 =head1 DESCRIPTION
 
@@ -166,7 +166,7 @@ plugin_keywords 'dancer_decrypt';
 sub dancer_decrypt {
 	my( $plugin, $encrypted_hash ) = @_;
 
-	return unless not $plugin->is_valid_encrypt_hash;
+	return unless $plugin->is_valid_encrypt_hash($encrypted_hash);
 
 	my $padding_character = $plugin->padding_character;
 	my $ciphertext = '';

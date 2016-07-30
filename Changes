@@ -4,3 +4,5 @@ Revision history for Dancer2-Plugin-EncryptID
         First version, released on an unsuspecting world.
 0.02    30-07-2016
         cleanup
+0.03    30-07-2016
+        Bugfixes

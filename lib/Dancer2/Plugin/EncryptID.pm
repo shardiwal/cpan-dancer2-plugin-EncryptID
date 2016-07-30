@@ -17,7 +17,7 @@ Version 0.01
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 DESCRIPTION
 
@@ -50,29 +50,28 @@ Or set the secret key at run time, with:
 =cut
 
 has secret => (
-    is => 'ro',
-    default => sub {
-    	my ( $self ) = @_;
-        my $secret = $self->config->{secret} || ':-) - :-)';
+	is => 'ro',
+	default => sub {
+		my $self = shift;
+		my $secret = $self->config->{secret} || ':-) - :-)';
 		die "Key must be 8 byte long" if length($secret) < 8;
-		print $secret, "\n";
 		return $secret;
-    }
+	}
 );
 
 has padding_character => (
-    is => 'ro',
-    default => sub {
-    	my ( $self ) = @_;
-        return $self->config->{padding_character} || '!';
-    }
+	is => 'ro',
+	default => sub {
+		my $self = shift;
+		return $self->config->{padding_character} || '!';
+	}
 );
 
 has cipher => (
     is => 'ro',
     lazy => 1,
     default => sub {
-    	my ( $self ) = @_;
+    	my $self = shift;
         return Crypt::Blowfish->new($self->secret);
     }
 );
